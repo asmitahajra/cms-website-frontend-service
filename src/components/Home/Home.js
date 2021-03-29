@@ -62,7 +62,7 @@ const Home = () => {
 
   return (
     <div>
-      Home page
+      Content Type Builder
     </div>
   );
 };

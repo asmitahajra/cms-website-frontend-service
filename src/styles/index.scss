@@ -1,0 +1,12 @@
+//breakpoints
+$mobile-breakpoint:30rem;
+$ipad-breakpoint:48rem;
+$ipad-bro-breakpoint:60rem;
+$laptop-breakpoint:72rem;
+//change
+
+@mixin media-mixin($width){
+    @media (max-width: $width){
+        @content;
+    }
+}

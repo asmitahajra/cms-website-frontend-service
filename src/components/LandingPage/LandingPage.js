@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 // import { useHistory } from 'react-router-dom';
 import './LandingPage.scss';
@@ -7,84 +8,49 @@ import { useHistory } from 'react-router-dom';
 import {
   Formik, Field, Form, ErrorMessage,
 } from 'formik';
-// import axios from 'axios';
-import registerValidation from './registerValidation';
+// import registerValidation from './registerValidation';
 import loginValidation from './loginValidation';
 import apiUtil from '../../utils/api';
 
-const LandingPage = () => {
+const LandingPage = ({ setStatus }) => {
   const history = useHistory();
   // const [successInRegister, setSuccessRegister] = useState('');
-  const [errorInRegister, setErrorRegister] = useState('');
+  // const [errorInRegister, setErrorRegister] = useState('');
   const [errorInLogin, setErrorLogin] = useState('');
   const submitted = false;
-  // let successMessage;
-  // const [name, setName] = useState('');
-  // useEffect(async () => {
-  //   // const registerUser = await axios.post(
-  //   //   'http://localhost:7000/register',
-  //   //   {
-  //   //     username: 'billy',
-  //   //     password: 'xyz',
-  //   //     user_details: { ttt: 'abc' },
-  //   //   },
-  //   // );
-  //   // console.log(registerUser);
+
+  // const onRegister = async (fields) => {
   //   const body = {
-  //     username: 'iiiii',
-  //     password: 'xyz',
+  //     username: fields.username,
+  //     password: fields.password,
+  //     user_details: {
+  //       email: fields.email,
+  //       phone: fields.phone,
+  //       address: fields.address,
+  //     },
   //   };
+  //   console.log('this is bod');
+  //   console.log(body);
+
   //   try {
-  //     const jwtTokenData = await apiUtil.getJwtToken(body);
-  //     if (jwtTokenData) {
-  //       localStorage.setItem(
-  //         'token',
-  //         jwtTokenData.data.token,
-  //       );
-  //     }
-  //     console.log(jwtTokenData);
-  //   } catch (e) {
-  //     console.log('this is error');
+  //     const registeredUser = await apiUtil.registerAUser(body);
+  //     console.log(registeredUser);
+  //     setErrorRegister('Successfuly registered! Please re-enter details to login');
+  //     // history.push('/home');
+  //   } catch (err) {
+  //     setErrorRegister(err.message);
+  //     console.log('this is message');
+  //     console.log(err.message);
   //   }
-  //   // const jwtTokenData = await apiUtil.getJwtToken(body);
-  //   successMessage = await apiUtil.getSuccessMessage();
-  //   console.log(successMessage.data);
-  //   // setName(successMessage.data);
-  //   // console.log(successMessage.data.message);
-  // }, []);
 
-  const onRegister = async (fields) => {
-    const body = {
-      username: fields.username,
-      password: fields.password,
-      user_details: {
-        email: fields.email,
-        phone: fields.phone,
-        address: fields.address,
-      },
-    };
-    console.log('this is bod');
-    console.log(body);
-
-    try {
-      const registeredUser = await apiUtil.registerAUser(body);
-      console.log(registeredUser);
-      setErrorRegister('Successfuly registered! Please re-enter details to login');
-      // history.push('/home');
-    } catch (err) {
-      setErrorRegister(err.message);
-      console.log('this is message');
-      console.log(err.message);
-    }
-
-    // console.log('here');
-    // console.log(fields);
-    // console.log('registered');
-  };
+  //   // console.log('here');
+  //   // console.log(fields);
+  //   // console.log('registered');
+  // };
 
   const onLogin = async (fields) => {
     const body = {
-      username: fields.username,
+      emailid: fields.emailid,
       password: fields.password,
     };
     try {
@@ -94,8 +60,9 @@ const LandingPage = () => {
           'token',
           jwtTokenData.data.token,
         );
+        setStatus();
       }
-      history.push('/home');
+      history.push('/contenttypebuilder');
     } catch (err) {
       setErrorLogin(err.message);
     }
@@ -129,7 +96,7 @@ const LandingPage = () => {
           <h1>
             {/* Form */}
           </h1>
-          <p className="header">Register a new User!</p>
+          {/* <p className="header">Register a new User!</p>
           <Formik
             className="checkout-form"
             initialValues={{
@@ -187,8 +154,9 @@ const LandingPage = () => {
                 <button
                   type="submit"
                   data-testid="submit-button"
-                  // eslint-disable-next-line max-len
-                  // disabled={!Formik.isValid || (Object.keys(Formik.touched).length === 0 && Formik.touched.constructor === Object)} // eslint-disable-next-line max-len
+                  // disabled={!Formik.isValid
+                  || (Object.keys(Formik.touched).length === 0
+                  && Formik.touched.constructor === Object)} // eslint-disable-next-line max-len
                   // onClick={() => { onRegister(); }}
                 >
                   Submit
@@ -199,14 +167,14 @@ const LandingPage = () => {
             </Form>
           </Formik>
           {errorInRegister === '' ? null : <div>{ errorInRegister }</div>}
-          {/* {successInRegister === '' ? null : <div>{ errorInRegister }</div>} */}
+          {successInRegister === '' ? null : <div>{ errorInRegister }</div>} */}
 
           <br />
-          <p className="header">Login if existing user!</p>
+          <p className="header">Login to your CMS+ account!</p>
           <Formik
             className="checkout-form"
             initialValues={{
-              username: '',
+              emailid: '',
               password: '',
             }}
             validationSchema={loginValidation}
@@ -216,33 +184,37 @@ const LandingPage = () => {
             }}
           >
             <Form className="form">
-              <Field name="username" type="text" placeholder="Username" />
+              <p>Email</p>
+              <Field name="emailid" type="text" placeholder="" />
               <ErrorMessage
-                name="username"
+                name="emailid"
                 component="div"
                 className="invalid-feedback"
               />
-
-              <Field name="password" type="text" placeholder="Password" />
+              <p>Password</p>
+              <Field name="password" type="text" placeholder="" />
               <ErrorMessage
                 name="password"
                 component="div"
                 className="invalid-feedback"
               />
               <br />
+              <br />
               <div className="submit-button">
                 <button
                   type="submit"
                   data-testid="submit-button"
                 >
-                  Submit
+                  Login
 
                 </button>
               </div>
 
             </Form>
           </Formik>
+          <br />
           {errorInLogin === '' ? null : <div>{ errorInLogin }</div>}
+          <p>Forgot password?</p>
         </div>
       ) : (
         <>

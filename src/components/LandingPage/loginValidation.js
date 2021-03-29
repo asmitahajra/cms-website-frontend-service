@@ -10,9 +10,9 @@ const yup = require('yup');
 //   .max(10, 'to long');
 
 const Validation = yup.object().shape({
-  username: yup.string().required('First name required'),
-  password: yup.string().required('Last name required'),
-  // email: yup.string().email('Invalid email').required('Email Required'),
+  // username: yup.string().required('First name required'),
+  emailid: yup.string().email('Invalid email').required('Email Required'),
+  password: yup.string().required('Password required'),
   //   phone: yup.string()
   //     .required('Phone number required')
   //     .matches(

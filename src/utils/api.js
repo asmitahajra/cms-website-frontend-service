@@ -63,13 +63,29 @@ const registerAUser = async (body) => {
 
 const loginAUser = async (body) => {
   try {
-    // const {data}
     const jwtToken = await axios.post('http://localhost:7000/login', body);
     return jwtToken;
   } catch (error) {
     if (error.response.status === 401) { throw new Error('Username and password do not match'); }
     throw new Error('Server error');
   }
+};
+
+const createContentType = async (name) => {
+  const body = {
+    name,
+    fields: [],
+  };
+  const accessToken = getAuthToken();
+  const createdContentType = await axios.post('http://localhost:3000/cms', body, { headers: { Authorization: accessToken } });
+  return createdContentType.data;
+};
+
+const getAllContentTypes = async () => {
+  const accessToken = getAuthToken();
+  const allContentTypes = await axios.get('http://localhost:3000/cms', { headers: { Authorization: accessToken } });
+  console.log(allContentTypes.data);
+  return allContentTypes.data;
 };
 
 // const getAllDemos = async () => {
@@ -84,5 +100,5 @@ const loginAUser = async (body) => {
 //   return data.data;
 // };
 export default {
-  getJwtToken, getSuccessMessage, registerAUser, loginAUser,
+  getJwtToken, getSuccessMessage, registerAUser, loginAUser, createContentType, getAllContentTypes,
 };
