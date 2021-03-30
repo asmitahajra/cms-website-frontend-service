@@ -65,6 +65,8 @@ const CollectionTypes = ({
                   <div className="head">{fieldType}</div>
                 </div>
               ))}
+              <br />
+              <br />
             </div>
             <div>
               {selectedCollection[0].instances.map((eachInstance) => (
@@ -86,12 +88,5 @@ const CollectionTypes = ({
 
     </div>
   );
-
-//   return (
-//     <div>
-//       {abc}
-//       CollectionTypes
-//     </div>
-//   );
 };
 export default CollectionTypes;

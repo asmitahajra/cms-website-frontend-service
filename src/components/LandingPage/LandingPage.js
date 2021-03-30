@@ -1,21 +1,17 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-// import { useHistory } from 'react-router-dom';
 import './LandingPage.scss';
 import { useHistory } from 'react-router-dom';
-// import { Link } from 'react-router-dom';
-// import axios from 'axios';
+
 import {
   Formik, Field, Form, ErrorMessage,
 } from 'formik';
-// import registerValidation from './registerValidation';
 import loginValidation from './loginValidation';
 import apiUtil from '../../utils/api';
 
 const LandingPage = ({ setStatus }) => {
   const history = useHistory();
-  // const [successInRegister, setSuccessRegister] = useState('');
-  // const [errorInRegister, setErrorRegister] = useState('');
+
   const [errorInLogin, setErrorLogin] = useState('');
   const submitted = false;
 
@@ -69,108 +65,12 @@ const LandingPage = ({ setStatus }) => {
     console.log('logged in');
   };
 
-  // let successMessage;
-  // const getJwtTokenFunction = async ({ body }) => {
-  //   try {
-  //     const jwtTokenData = await apiUtil.getJwtToken(body);
-  //     console.log('printing response for jwt');
-  //     console.log(jwtTokenData);
-  //     if (jwtTokenData) {
-  //       localStorage.setItem(
-  //         'token',
-  //         jwtTokenData.data.jwtToken,
-  //       );
-  //     }
-  //   } catch (e) {
-  //     console.log('this is error');
-  //   }
-
-  //   successMessage = await apiUtil.getSuccessMessage();
-  // };
-
-  // getJwtTokenFunction(body);
   return (
-    <div>
+    <div className="login-form">
       {!submitted ? (
         <div className="checkout-form">
-          <h1>
-            {/* Form */}
-          </h1>
-          {/* <p className="header">Register a new User!</p>
-          <Formik
-            className="checkout-form"
-            initialValues={{
-              username: '',
-              password: '',
-              email: '',
-              phone: '',
-              address: '',
-            }}
-            validationSchema={registerValidation}
-            onSubmit={(fields) => {
-              console.log(fields);
-              onRegister(fields);
-            }}
-          >
-
-            <Form className="form">
-              <Field name="username" type="text" placeholder="Username" />
-              <ErrorMessage
-                name="username"
-                component="div"
-                className="invalid-feedback"
-              />
-
-              <Field name="password" type="text" placeholder="Password" />
-              <ErrorMessage
-                name="password"
-                component="div"
-                className="invalid-feedback"
-              />
-
-              <Field name="email" type="email" placeholder="Email" />
-              <ErrorMessage
-                name="email"
-                component="div"
-                className="invalid-feedback"
-              />
-
-              <Field name="phone" type="number" placeholder="Phone number" />
-              <ErrorMessage
-                name="phone"
-                component="div"
-                className="invalid-feedback"
-              />
-
-              <Field name="address" type="text" placeholder="Address" />
-              <ErrorMessage
-                name="address"
-                component="div"
-                className="invalid-feedback"
-              />
-              <br />
-              <div className="submit-button">
-                <br />
-                <button
-                  type="submit"
-                  data-testid="submit-button"
-                  // disabled={!Formik.isValid
-                  || (Object.keys(Formik.touched).length === 0
-                  && Formik.touched.constructor === Object)} // eslint-disable-next-line max-len
-                  // onClick={() => { onRegister(); }}
-                >
-                  Submit
-
-                </button>
-              </div>
-
-            </Form>
-          </Formik>
-          {errorInRegister === '' ? null : <div>{ errorInRegister }</div>}
-          {successInRegister === '' ? null : <div>{ errorInRegister }</div>} */}
-
           <br />
-          <p className="header">Login to your CMS+ account!</p>
+          <p className="header"><strong>Login to your CMS+ account!</strong></p>
           <Formik
             className="checkout-form"
             initialValues={{
@@ -183,16 +83,18 @@ const LandingPage = ({ setStatus }) => {
               onLogin(fields);
             }}
           >
-            <Form className="form">
+            <Form className="form-login">
               <p>Email</p>
-              <Field name="emailid" type="text" placeholder="" />
+              <Field name="emailid" type="text" placeholder="" className="email-box" />
               <ErrorMessage
                 name="emailid"
                 component="div"
                 className="invalid-feedback"
               />
+              <br />
+              <br />
               <p>Password</p>
-              <Field name="password" type="text" placeholder="" />
+              <Field name="password" type="text" placeholder="" className="password-box" />
               <ErrorMessage
                 name="password"
                 component="div"
@@ -204,9 +106,11 @@ const LandingPage = ({ setStatus }) => {
                 <button
                   type="submit"
                   data-testid="submit-button"
+                  className="login-button"
                 >
-                  Login
-
+                  <p>
+                    Login
+                  </p>
                 </button>
               </div>
 
@@ -223,18 +127,21 @@ const LandingPage = ({ setStatus }) => {
           </p>
         </>
       )}
+
+      {/* <img
+        alt="logo1"
+        src="..assets/undraw-upload-re-pasx.png"
+        srcSet="img/undraw-upload-re-pasx@2x.png 2x,
+             img/undraw-upload-re-pasx@3x.png 3x"
+        className="undraw_Upload_re_pasx"
+      />
+
+      <img
+        alt="logo2"
+        src="..assets/undraw-upload-re-pasx.svg"
+        className="undraw_Upload_re_pasx"
+      /> */}
     </div>
   );
-  // return (
-  //   <div data-testid="landing-page" className="landing-page">
-  //     <div className="container">
-  //       <h3>daily vocab!</h3>
-  //       <p>learn a new  word everyday!</p>
-  //       {/* {`hi ${name}`} */}
-  //       {/* <Link to="/home"><button type="button">Get Started</button></Link> */}
-  //       {/* <button type="button" onClick={() => history.push('/home')}>Get Started</button> */}
-  //     </div>
-  //   </div>
-  // );
 };
 export default LandingPage;

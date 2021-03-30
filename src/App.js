@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-plusplus */
 /* eslint-disable no-unused-vars */
 import './App.css';
@@ -8,23 +9,17 @@ import {
 } from 'react-router-dom';
 import LandingPage from './components/LandingPage/LandingPage';
 import NavBar from './components/NavBar/NavBar';
-import Home from './components/Home/Home';
+
 import { getAuthToken } from './utils/utils';
 import ContentTypeBuilder from './components/ContentTypeBuilder/ContentTypeBuilder';
 import CollectionTypes from './components/CollectionTypes/CollectionTypes';
 import apiUtils from './utils/api';
 
-// import Utils from './utils/localStorageUtils';
 const _ = require('lodash');
 
-// import Home from './components/Home/Home';
-// import AddWord from './components/AddWord/AddWord';
-
 const App = () => {
-  // eslint-disable-next-line no-unused-vars
   const abc = 1;
   const [loggedInStatus, setLoggedInStatus] = useState(false);
-  // const [allCollections, setAllCollections] = useState([]);
   const [allContentTypes, setAllContentTypes] = useState([]);
   const [isLoaded, setLoaded] = useState(false);
   const [selectedContent, setSelectedContent] = useState([{ id: 0, fields: [], instances: [] }]);
@@ -35,8 +30,7 @@ const App = () => {
 
   const setStatus = async () => {
     setLoggedInStatus(true);
-    // const fetchedCollections = await apiUtils.getAllCollections();
-    // const allCollectionObjects = fetchedCollections.allCollections;
+
     const fetchedContentTypes = await apiUtils.getAllContentTypes();
     const allContentTypesObjects = fetchedContentTypes.allContentTypes;
     console.log('these are 1');
@@ -45,7 +39,6 @@ const App = () => {
     console.log('old content');
     console.log(allContentTypes);
     setLoaded(true);
-    // setSelectedContent(allContentTypes[0]);
   };
 
   const editTheInstance = async (previousInstance, values, colId, instId) => {
@@ -99,23 +92,6 @@ const App = () => {
     setSelectedCollection(resultCollection);
   };
 
-  // useEffect(async () => {
-  //   const allContentTypes = await apiUtils.getAllContentTypes();
-  //   // const itemsObjects = await apiUtil.getItems();
-
-  //   // const items = await axios.get('/items');
-  //   // console.log({ items });
-  //   // const itemsObjects = items.data.data;
-  //   // const newItemsObjects = itemsObjects.map((eachProduct) =>  {
-  //   //   ...eachProduct,
-  //   //   count: eachProduct.count + 1,
-  //   // });
-
-  //   // setProducts(itemsObjects);
-  //   // const filterProducts = groupByCategory(itemsObjects);
-  //   // setIsLoaded(true);
-  //   // setFilteredProducts(filterProducts);
-  // }, []);
   const showSelectedCollection = async (id) => {
     const resultCollection = allContentTypes.filter((obj) => obj.id === id);
     console.log('this is selected collection');
@@ -268,29 +244,63 @@ const App = () => {
     setSelectedCollection(resultCollection);
   };
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token');
-  //   console.log(token);
-  //   if (token) {
-  //     console.log('here');
-  //     setLoggedInStatus(true);
-  //   }
-  // }, []);
+  const deleteField = async (id, fieldName) => {
+    console.log('id and fieldname');
+    console.log(id);
+    console.log(fieldName);
+    const newAllContent = _.cloneDeep(allContentTypes);
+    console.log(newAllContent);
 
-  // const addNewVocab = (newVocab) => {
-  //   console.log('now we gotta add this');
-  //   console.log({ newVocab });
-  //   const newVocabitems = [...vocab, newVocab];
-  //   setVocab(newVocabitems);
-  //   // console.log('new', newVocabitems);
-  //   // setVocab(newVocabitems);
-  // };
+    const objectIndex = newAllContent.findIndex((e) => e.id === id);
+    // this is index of content
+    console.log(objectIndex);
 
-  // do conditionally render NavBar
+    const oldObject = newAllContent[objectIndex];
+    // this is object
+    console.log('oldobject', oldObject);
+
+    let oldArrayOfObjects = oldObject.fields;
+    console.log('oldFields', oldArrayOfObjects);
+
+    oldArrayOfObjects = oldArrayOfObjects.filter((e) => e !== fieldName);
+    console.log('updated fields');
+
+    const oldInstances = oldObject.instances;
+    if (oldInstances !== null) {
+      // update fields and instances
+      oldInstances.forEach((v) => { delete v[fieldName]; });
+
+      console.log('new instances and new fields');
+      console.log(oldArrayOfObjects);
+      console.log(oldInstances);
+      const deletedObjects = await apiUtils.updateFieldsAndInstances(
+        oldArrayOfObjects, oldInstances, id,
+      );
+      const fetchedAgain = await apiUtils.getAllContentTypes();
+      const allObjects = fetchedAgain.allContentTypes;
+      console.log('these are 3');
+      console.log(allObjects);
+      setAllContentTypes(allObjects);
+      const resultCollection = allObjects.filter(
+        (obj) => obj.id === id,
+      );
+      console.log('this is selected collectionnnnnnn');
+      console.log(resultCollection);
+      setSelectedCollection(resultCollection);
+      setSelectedContent(resultCollection);
+    } else {
+      const deletedObjects = await apiUtils.updateField(oldArrayOfObjects, id);
+      const fetchedContentTypes = await apiUtils.getAllContentTypes();
+      const allContentTypesObjects = fetchedContentTypes.allContentTypes;
+      console.log('these are 2');
+      console.log(allContentTypesObjects);
+      setAllContentTypes(allContentTypesObjects);
+      // update fields only
+    }
+  };
   return (
     <div className="App">
       <BrowserRouter>
-        {/* <NavBar /> */}
         {loggedInStatus ? (
           <div>
             <NavBar
@@ -308,6 +318,7 @@ const App = () => {
               addNewContentType={addNewContentType}
               updateFields={updateFields}
               updateFieldsAndInstances={updateFieldsAndInstances}
+              deleteField={deleteField}
             />
           </Route>
           <Route path="/collectiontypes">

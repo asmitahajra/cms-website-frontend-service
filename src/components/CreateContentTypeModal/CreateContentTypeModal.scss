@@ -24,3 +24,16 @@
   .display-none {
     display: none;
   }
+
+  .create-content-modal {
+    .submit-button {
+      width: fit-content;
+         height: 41px;
+         margin: 13px 368px 0 20px;
+         padding: 12px 58px 14px 59px;
+         border-radius: 6px;
+         background-image: radial-gradient(circle at 0 0, #9d70ff, #633dff);
+         color: whitesmoke;
+         text-align: center;
+       }
+  }

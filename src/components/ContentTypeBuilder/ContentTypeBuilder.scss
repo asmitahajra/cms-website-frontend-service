@@ -1,4 +1,5 @@
 .contenttypebuilder {
+    background-color:#EEE5EE;
     .header {
         width: 1145px;
   height: 62px;
@@ -9,7 +10,7 @@
     width: 153px;
     height: 24px;
     font-family: Montserrat;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
@@ -29,7 +30,7 @@
     // }
 
     .new-type-button {
-        width: 273px;
+        width: fit-content;
         height: 54px;
         margin: 12px 0 8px;
         padding: 18px 88px 17px 90px;
@@ -38,6 +39,16 @@
         background-color: rgba(255, 255, 255, 0.5);
         position: relative;
         left: -400px;
+        color:  #2f04ce;
+        text-align: center;
+
+        // width: 273px;
+        // height: 54px;
+        // margin: 12px 0 8px;
+        // padding: 18px 88px 17px 90px;
+        // border-radius: 8px;
+        // border: solid 1px #2f04ce;
+        // background-color: rgba(255, 255, 255, 0.5);
     }
 
     .abc {

@@ -27,3 +27,15 @@
 // .child {
 // display: flex;
 // }
+
+.field-instances {
+    display: flex;
+
+    .instance-parent {
+        display: flex;
+        .child {
+            display: flex;
+
+        }
+    }
+}

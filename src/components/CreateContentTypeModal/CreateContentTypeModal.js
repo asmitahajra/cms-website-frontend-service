@@ -22,13 +22,13 @@ const CreateContentTypeModal = ({ addNewContentType }) => {
 
   // const showHideClassName = show ? 'modal display-block' : 'modal display-none';
   return (
-    <div>
+    <div className="create-content-modal">
       <section className="modal-main">
         <p>Create a New Content Type</p>
         <p>Name of the content type</p>
         <form onSubmit={handleSubmit}>
           <input type="text" value={value} onChange={handleChange} />
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Submit" className="submit-button" />
         </form>
         <br />
         {/* <button type="button" onClick={() => handleClose()}>

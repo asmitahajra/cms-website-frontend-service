@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import EdiText from 'react-editext';
 import './ContentTypeField.scss';
 
-const ContentTypeField = ({ eachField, editField }) => {
+const ContentTypeField = ({ eachField, editField, deleteField }) => {
   // const [oldValue] = useState(eachField);
   // const [value, setValue] = useState(eachField);
 
@@ -23,6 +23,7 @@ const ContentTypeField = ({ eachField, editField }) => {
         value={eachField}
         onSave={handleSave}
       />
+      <button type="button" onClick={deleteField}>Delete</button>
     </div>
   );
 };

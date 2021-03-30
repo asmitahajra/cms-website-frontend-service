@@ -34,14 +34,16 @@ const CollectionTypeField = ({
   const abc = JSON.stringify(eachInstance);
 
   return (
-    <div>
+    <div className="field-instances">
       {
           Object.keys(eachInstance).map((fieldType) => (
             <div key={fieldType} className="instance-parent">
               {fieldType !== 'uniqueId' ? (
                 <div className="child">
                   {eachInstance[fieldType]}
-                  {''}
+                  {' '}
+                  <span />
+                  {' '}
                 </div>
               ) : null}
             </div>

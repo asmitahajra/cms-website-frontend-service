@@ -5,7 +5,9 @@ import React, { useState } from 'react';
 import ContentTypeField from '../ContentTypeField/ContentTypeField';
 import './ContentTypePage.scss';
 
-const ContentTypePage = ({ selectedContent, updateFields, updateFieldsAndInstances }) => {
+const ContentTypePage = ({
+  selectedContent, updateFields, updateFieldsAndInstances, deleteField,
+}) => {
   const [showNewField, setShowNewField] = useState(false);
   const [value, setValue] = useState('');
 
@@ -88,7 +90,12 @@ const ContentTypePage = ({ selectedContent, updateFields, updateFieldsAndInstanc
             <div>
               {selectedContent[0].fields.map((eachField) => (
                 <React.Fragment key={eachField}>
-                  <ContentTypeField eachField={eachField} editField={editField} />
+                  <ContentTypeField
+                    className="content-field"
+                    eachField={eachField}
+                    editField={editField}
+                    deleteField={() => deleteField(selectedContent[0].id, eachField)}
+                  />
                 </React.Fragment>
               ))}
             </div>

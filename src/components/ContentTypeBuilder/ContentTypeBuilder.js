@@ -9,19 +9,8 @@ import './ContentTypeBuilder.scss';
 
 const ContentTypeBuilder = ({
   allContentTypes, showContentFields,
-  selectedContent, addNewContentType, updateFields, updateFieldsAndInstances,
+  selectedContent, addNewContentType, updateFields, updateFieldsAndInstances, deleteField,
 }) => {
-  // const abc = JSON.stringify(allContentTypes);
-  // const [showState, setShowState] = useState(false);
-
-  // const showModal = () => {
-  //   setShowState(true);
-  // };
-
-  // const hideModal = () => {
-  //   setShowState(false);
-  // };
-
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const setModalIsOpenToTrue = () => {
@@ -42,14 +31,6 @@ const ContentTypeBuilder = ({
       </div>
       <br />
       <br />
-      {/* <CreateContentTypeModal
-        show={showState}
-        handleClose={hideModal}
-        addNewContentType={addNewContentType}
-      >
-        <p>Modal</p>
-      </CreateContentTypeModal>
-      <button type="button" onClick={showModal}>+ New Type</button> */}
 
       <button type="button" className="new-type-button" onClick={setModalIsOpenToTrue}>+ New Type</button>
       <Modal isOpen={modalIsOpen}>
@@ -75,6 +56,7 @@ const ContentTypeBuilder = ({
             selectedContent={selectedContent}
             updateFields={updateFields}
             updateFieldsAndInstances={updateFieldsAndInstances}
+            deleteField={deleteField}
           />
         </div>
 

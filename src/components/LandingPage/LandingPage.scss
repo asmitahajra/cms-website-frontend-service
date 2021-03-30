@@ -1,0 +1,77 @@
+.login-form {
+    width: 571px;
+    height: 800px;
+    padding: 151px 86px 252px 87px;
+    background-color: #272727;
+    color: whitesmoke;
+    float: right;
+
+    header {
+        width: 398px;
+        height: 33px;
+        margin: 0 0 110px;
+        font-family: Montserrat;
+        font-size: 27px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+    }
+
+}
+
+.undraw_Upload_re_pasx {
+    width: 589px;
+    height: 451px;
+    margin: 182px 136px 63px 131px;
+    object-fit: contain;
+  }
+
+
+  .login-button  {
+    width: 270px;
+    height: 41px;
+    padding: 12px 117px 14px 118px;
+    border-radius: 6px;
+    background-image: radial-gradient(circle at 0 0, #9d70ff, #633dff);
+
+    p {
+        width: 35px;
+        height: 15px;
+        font-family: Montserrat;
+        font-size: 12px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+      
+    }
+  }
+
+  .form-login {
+    .email-box {
+        width: 270px;
+        height: 36px;
+        margin: 9px 0 0;
+        border-radius: 6px;
+        border: solid 0.8px #91a5fe;
+        background-color: #fcfcfc;
+    
+      }
+    
+      .password-box {
+        width: 270px;
+        height: 36px;
+        margin: 9px 0 0;
+        border-radius: 6px;
+        border: solid 0.8px #91a5fe;
+        background-color: #fcfcfc;
+
+  }
+}
