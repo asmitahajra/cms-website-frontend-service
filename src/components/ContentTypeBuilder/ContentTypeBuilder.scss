@@ -1,0 +1,46 @@
+.contenttypebuilder {
+    .header {
+        width: 1145px;
+  height: 62px;
+  padding: 21px 960px 17px 32px;
+  background-color: #ffffff;
+
+  h1 {
+    width: 153px;
+    height: 24px;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #4f4f4f;
+
+  }
+    }
+
+    // .contenttypelist {
+    //     width: 337px;
+    //     height: 800px;
+    //     padding: 93px 32px 183px;
+    //     opacity: 0.1;
+    //     background-color: lightgray;
+    // }
+
+    .new-type-button {
+        width: 273px;
+        height: 54px;
+        margin: 12px 0 8px;
+        padding: 18px 88px 17px 90px;
+        border-radius: 8px;
+        border: solid 1px #2f04ce;
+        background-color: rgba(255, 255, 255, 0.5);
+        position: relative;
+        left: -400px;
+    }
+
+    .abc {
+        display: flex;
+    }
+}

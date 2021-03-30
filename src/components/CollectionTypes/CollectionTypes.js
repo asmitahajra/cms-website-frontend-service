@@ -10,8 +10,12 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import CreateInstanceModal from '../CreateInstanceModal/CreateInstanceModal';
 import CollectionTypeField from '../CollectionTypeField/CollectionTypeField';
+import './CollectionTypes.scss';
 
-const CollectionTypes = ({ allCollections, selectedCollection, createTheInstance }) => {
+const CollectionTypes = ({
+  allCollections,
+  selectedCollection, createTheInstance, editTheInstance,
+}) => {
   const fieldsToEnter = selectedCollection[0].fields;
   let initialValues = {};
 
@@ -38,28 +42,9 @@ const CollectionTypes = ({ allCollections, selectedCollection, createTheInstance
   const setModalIsOpenToFalse = () => {
     setModalIsOpen(false);
   };
-
-  //   const [showState, setShowState] = useState(false);
-
-  //   const showModal = () => {
-  //     setShowState(true);
-  //   };
-
-  //   const hideModal = () => {
-  //     setShowState(false);
-  //   };
   return (
     <div>
-      <br />
-      <br />
-      {/* <CreateInstanceModal
-        show={showState}
-        handleClose={hideModal}
-      >
-        <p>Modal</p>
-      </CreateInstanceModal>
-      <button type="button" onClick={showModal}>Add a New Entry</button> */}
-      <button type="button" onClick={setModalIsOpenToTrue}>Add a New Entry</button>
+      <button type="button" className="newEntry" onClick={setModalIsOpenToTrue}>Add a New Entry</button>
 
       <Modal isOpen={modalIsOpen}>
         <button type="button" onClick={setModalIsOpenToFalse}>x</button>
@@ -73,16 +58,31 @@ const CollectionTypes = ({ allCollections, selectedCollection, createTheInstance
 
       { selectedCollection[0].instances !== null
         ? (
-          <div>
-            Hello
-            {selectedCollection[0].instances.map((eachInstance) => (
-              <React.Fragment key={eachInstance}>
-                <CollectionTypeField eachInstance={eachInstance} />
-              </React.Fragment>
-            ))}
+          <div className="collections">
+            <div>
+              { selectedCollection[0].fields.map((fieldType) => (
+                <div className="field-heading">
+                  <div className="head">{fieldType}</div>
+                </div>
+              ))}
+            </div>
+            <div>
+              {selectedCollection[0].instances.map((eachInstance) => (
+                <React.Fragment key={eachInstance.uniqueId}>
+                  <CollectionTypeField
+                    eachInstance={eachInstance}
+                    editTheInstance={editTheInstance}
+                    collectionId={selectedCollection[0].id}
+                    dynamicFormFields={dynamicFormFields}
+                    initialValues={initialValues}
+
+                  />
+                </React.Fragment>
+              ))}
+            </div>
           </div>
         )
-        : <div>No fields</div>}
+        : <div>No instances</div>}
 
     </div>
   );

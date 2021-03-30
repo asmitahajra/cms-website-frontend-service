@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import './CreateContentTypeModal.scss';
 
-const CreateContentTypeModal = ({ show, handleClose, addNewContentType }) => {
+const CreateContentTypeModal = ({ addNewContentType }) => {
   // const [value, setValue] = useState({ value: '' });
   const [value, setValue] = useState('');
 
@@ -17,12 +17,12 @@ const CreateContentTypeModal = ({ show, handleClose, addNewContentType }) => {
     // alert(`A name was submitted: ${value}`);
     event.preventDefault();
     addNewContentType(value);
-    handleClose();
+    // handleClose();
   };
 
-  const showHideClassName = show ? 'modal display-block' : 'modal display-none';
+  // const showHideClassName = show ? 'modal display-block' : 'modal display-none';
   return (
-    <div className={showHideClassName}>
+    <div>
       <section className="modal-main">
         <p>Create a New Content Type</p>
         <p>Name of the content type</p>
@@ -31,9 +31,9 @@ const CreateContentTypeModal = ({ show, handleClose, addNewContentType }) => {
           <input type="submit" value="Submit" />
         </form>
         <br />
-        <button type="button" onClick={() => handleClose()}>
+        {/* <button type="button" onClick={() => handleClose()}>
           Close
-        </button>
+        </button> */}
       </section>
     </div>
   );

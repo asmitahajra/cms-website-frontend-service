@@ -16,7 +16,7 @@ const CollectionTypesList = ({ allContentTypes, showSelectedCollection }) => {
   return (
     <div className="collection-list">
       {allContentTypes.map((eachCollectionType) => (
-        <div className="">
+        <div className="eachcollectiontype">
           <button type="button" onClick={() => tryThis(eachCollectionType.id)}>{eachCollectionType.name}</button>
         </div>
       ))}

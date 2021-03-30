@@ -1,0 +1,26 @@
+.contenttypepage {
+    display: flex;
+    flex-direction: column;
+    position:absolute; right:180px; top:100px;
+    h1 {
+        width: 254px;
+  height: 34px;
+  margin: 29px 11px 8px 32px;
+  font-family: Montserrat;
+  font-size: 28px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #4f4f4f;
+    }
+    .add-type-button {
+        // width: 744px;
+        height: 54px;
+        // padding: 18px 299px 17px 301px;
+        border-radius: 8px;
+        border: solid 1px #2f04ce;
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+}

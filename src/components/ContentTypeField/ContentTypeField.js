@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import EdiText from 'react-editext';
+import './ContentTypeField.scss';
 
 const ContentTypeField = ({ eachField, editField }) => {
   // const [oldValue] = useState(eachField);
@@ -16,8 +17,8 @@ const ContentTypeField = ({ eachField, editField }) => {
 
   return (
     <div>
-      hey
       <EdiText
+        className="edit-field"
         type="text"
         value={eachField}
         onSave={handleSave}

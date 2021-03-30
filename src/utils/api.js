@@ -43,11 +43,11 @@ const getJwtToken = async (body) => {
 //   return successMessage;
 // };
 
-const getSuccessMessage = async () => {
-  const accessToken = getAuthToken();
-  const successMessage = await axios.get('http://localhost:3000/test', { headers: { Authorization: accessToken } });
-  return successMessage;
-};
+// const getSuccessMessage = async () => {
+//   const accessToken = getAuthToken();
+//   const successMessage = await axios.get('http://localhost:3000/test', { headers: { Authorization: accessToken } });
+//   return successMessage;
+// };
 
 // eslint-disable-next-line consistent-return
 const registerAUser = async (body) => {
@@ -96,7 +96,7 @@ const updateField = async (newField, id) => {
   const accessToken = getAuthToken();
 
   const updatedContentType = await axios.put(`http://localhost:3000/cms/${id}`, body, { headers: { Authorization: accessToken } });
-  console.log(updatedContentType);
+  return updatedContentType.data;
 };
 
 // eslint-disable-next-line no-unused-vars
@@ -105,8 +105,31 @@ const createAnInstance = async (newInstances, id, uniqueId) => {
     newInstances,
   };
   const accessToken = getAuthToken();
-  const updatedContentType = await axios.put(`http://localhost:3000/cms/instance/${id}`, body, { headers: { Authorization: accessToken } });
-  console.log(updatedContentType);
+  const updatedContentType = await axios.patch(`http://localhost:3000/cms/instance/${id}`, body, { headers: { Authorization: accessToken } });
+  return updatedContentType.data;
+};
+
+const updateFieldsAndInstances = async (newFields, newInstances, id) => {
+  const body = {
+    newFields,
+    newInstances,
+  };
+  console.log('req for field instance');
+  console.log(body);
+  const accessToken = getAuthToken();
+  const updatedContentType = await axios.post(`http://localhost:3000/cms/update/${id}`, body, { headers: { Authorization: accessToken } });
+  console.log(updatedContentType.data);
+};
+
+const editInstance = async (newInstances, contentId) => {
+  const body = {
+    newInstances,
+  };
+  console.log('req for field instance');
+  console.log(body);
+  const accessToken = getAuthToken();
+  const updatedContentType = await axios.patch(`http://localhost:3000/cms/updateinstance/${contentId}`, body, { headers: { Authorization: accessToken } });
+  console.log(updatedContentType.data);
 };
 
 // const getAllCollections = async () => {
@@ -129,11 +152,13 @@ const createAnInstance = async (newInstances, id, uniqueId) => {
 // };
 export default {
   getJwtToken,
-  getSuccessMessage,
   registerAUser,
   loginAUser,
   createContentType,
   getAllContentTypes,
   updateField,
   createAnInstance,
+  updateFieldsAndInstances,
+  editInstance,
+
 };

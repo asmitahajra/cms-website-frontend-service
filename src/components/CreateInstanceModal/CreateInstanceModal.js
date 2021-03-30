@@ -106,7 +106,7 @@ const CreateInstanceModal = ({
           submit={onSubmit}
           feilds={fields}
           initialValues={initial}
-          buttonText="SignUp"
+          buttonText="Add"
         />
         <br />
       </section>

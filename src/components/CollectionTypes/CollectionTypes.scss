@@ -1,0 +1,31 @@
+.field-heading {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+    float: left;
+
+    // display: flex;
+    // justify-content: space-between;
+    .head {
+        float: left;
+        margin-right: 5px;
+    }
+}
+
+.collections {
+    flex-direction: column;
+}
+
+.newEntry  {
+   color: #2f04ce;
+    width: 143px;
+    height: 50px;
+    font-family: Montserrat;
+    font-size: 17px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center
+  }

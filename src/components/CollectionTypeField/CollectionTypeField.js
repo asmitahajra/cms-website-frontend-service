@@ -2,11 +2,29 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import EdiText from 'react-editext';
+import './CollectionTypeField.scss';
+import Modal from 'react-modal';
+import { each } from 'lodash';
+import EditInstanceModal from '../EditInstanceModal/EditInstanceModal';
 
-const CollectionTypeField = ({ eachInstance }) => {
-  // const [oldValue] = useState(eachField);
-  // const [value, setValue] = useState(eachField);
+const CollectionTypeField = ({
+  eachInstance, editTheInstance, collectionId,
+  dynamicFormFields, initialValues,
+}) => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
+  const setModalIsOpenToTrue = () => {
+    setModalIsOpen(true);
+  };
+
+  const setModalIsOpenToFalse = () => {
+    setModalIsOpen(false);
+  };
+
+  const handleEditInstance = (uniqueId, collId) => {
+    setModalIsOpenToTrue();
+    editTheInstance(uniqueId, collId);
+  };
   const handleSave = (val) => {
     console.log('old val', eachInstance);
     console.log('Edited Value -> ', val);
@@ -17,25 +35,34 @@ const CollectionTypeField = ({ eachInstance }) => {
 
   return (
     <div>
-      {/* {eachInstance.name}
-      <EdiText
-        type="text"
-        value={eachInstance.name}
-        onSave={handleSave}
-      /> */}
       {
           Object.keys(eachInstance).map((fieldType) => (
-            <div>
+            <div key={fieldType} className="instance-parent">
               {fieldType !== 'uniqueId' ? (
-                <div>
-                  {' '}
+                <div className="child">
                   {eachInstance[fieldType]}
+                  {''}
                 </div>
               ) : null}
-
             </div>
           ))
       }
+      <Modal isOpen={modalIsOpen}>
+        <button type="button" onClick={setModalIsOpenToFalse}>x</button>
+        <EditInstanceModal
+          key={eachInstance.uniqueI}
+          eachInstance={eachInstance}
+          dynamicFormFields={dynamicFormFields}
+          initialValues={initialValues}
+          editTheInstance={editTheInstance}
+          collectionId={collectionId}
+          instanceId={eachInstance.uniqueId}
+        />
+      </Modal>
+      {/* <button type="button"
+      onClick={() => handleEditInstance(eachInstance.uniqueId, collectionId)}>Edit</button> */}
+      <button type="button" className="newEntry" onClick={setModalIsOpenToTrue}>Edit</button>
+
     </div>
   );
 };
