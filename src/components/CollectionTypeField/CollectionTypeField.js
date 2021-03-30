@@ -9,7 +9,7 @@ import EditInstanceModal from '../EditInstanceModal/EditInstanceModal';
 
 const CollectionTypeField = ({
   eachInstance, editTheInstance, collectionId,
-  dynamicFormFields, initialValues,
+  dynamicFormFields, initialValues, deleteTheInstance,
 }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -61,9 +61,8 @@ const CollectionTypeField = ({
           instanceId={eachInstance.uniqueId}
         />
       </Modal>
-      {/* <button type="button"
-      onClick={() => handleEditInstance(eachInstance.uniqueId, collectionId)}>Edit</button> */}
       <button type="button" className="newEntry" onClick={setModalIsOpenToTrue}>Edit</button>
+      <button type="button" className="new-Entry" onClick={() => deleteTheInstance(eachInstance, collectionId)}>Delete</button>
 
     </div>
   );

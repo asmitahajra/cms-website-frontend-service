@@ -17,26 +17,6 @@ const EditInstanceModal = ({
   const initial = initialValues;
 
   const onSubmit = (values) => {
-    // console.log(values);
-    // const uniqueId = uuidv4();
-    // const valuesWithUniqueId = values;
-    // valuesWithUniqueId.uniqueId = uniqueId;
-    // console.log('final value');
-    // console.log(valuesWithUniqueId);
-    // console.log('selected collection id');
-    // const selectedCollectionId = selectedCollection[0].id;
-    // console.log(selectedCollectionId);
-
-    // let oldInstances = selectedCollection[0].instances;
-    // console.log('oldInstances');
-    // console.log(oldInstances);
-    // if (oldInstances === null) {
-    //   oldInstances = [valuesWithUniqueId];
-    // } else {
-    //   oldInstances.push(valuesWithUniqueId);
-    // }
-    // console.log('new instances');
-    // console.log(oldInstances);
     console.log(values);
     editTheInstance(eachInstance, values, collectionId, instanceId);
 

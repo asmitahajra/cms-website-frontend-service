@@ -14,7 +14,7 @@ import './CollectionTypes.scss';
 
 const CollectionTypes = ({
   allCollections,
-  selectedCollection, createTheInstance, editTheInstance,
+  selectedCollection, createTheInstance, editTheInstance, deleteTheInstance,
 }) => {
   const fieldsToEnter = selectedCollection[0].fields;
   let initialValues = {};
@@ -77,6 +77,7 @@ const CollectionTypes = ({
                     collectionId={selectedCollection[0].id}
                     dynamicFormFields={dynamicFormFields}
                     initialValues={initialValues}
+                    deleteTheInstance={deleteTheInstance}
 
                   />
                 </React.Fragment>

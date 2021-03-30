@@ -109,6 +109,13 @@ const App = () => {
     console.log(allContentTypesObjects);
     setAllContentTypes(allContentTypesObjects);
 
+    const resultCollection = allContentTypesObjects.filter(
+      (obj) => obj.id === id,
+    );
+    console.log('this is selected collectionnnnnnn');
+    console.log(resultCollection);
+    setSelectedCollection(resultCollection);
+
     // console.log(id);
   };
 
@@ -298,6 +305,58 @@ const App = () => {
       // update fields only
     }
   };
+
+  const deleteTheInstance = async (instance, id) => {
+    console.log('delete the instance');
+    console.log(instance);
+    console.log(id);
+
+    const newAllContent = _.cloneDeep(allContentTypes);
+    console.log(newAllContent);
+
+    const objectIndex = newAllContent.findIndex((e) => e.id === id);
+    // this is index of content
+    console.log(objectIndex);
+
+    const oldObject = newAllContent[objectIndex];
+    // this is object
+    console.log('oldobject', oldObject);
+
+    // let oldArrayOfObjects = oldObject.fields;
+    // console.log('oldFields', oldArrayOfObjects);
+
+    // oldArrayOfObjects = oldArrayOfObjects.filter((e) => e !== fieldName);
+    // console.log('updated fields');
+
+    const indexOfInstance = instance.uniqueId;
+    console.log(indexOfInstance);
+
+    let oldInstances = oldObject.instances;
+    console.log('old instance');
+    console.log(oldInstances);
+
+    oldInstances = oldInstances.filter((obj) => obj.uniqueId !== indexOfInstance);
+    console.log('new inst');
+    console.log(oldInstances);
+
+    const editedInstance = await apiUtils.editInstance(oldInstances, id);
+
+    console.log(editedInstance);
+
+    const fetchedContentTypes = await apiUtils.getAllContentTypes();
+    const allContentTypesObjects = fetchedContentTypes.allContentTypes;
+    console.log('these are 8');
+    console.log(allContentTypesObjects);
+    setAllContentTypes(allContentTypesObjects);
+
+    const resultCollection = allContentTypesObjects.filter(
+      (obj) => obj.id === id,
+    );
+    console.log('this is selected collectionnnnnnn');
+    console.log(resultCollection);
+    setSelectedCollection(resultCollection);
+  };
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -327,6 +386,7 @@ const App = () => {
               selectedCollection={selectedCollection}
               createTheInstance={createTheInstance}
               editTheInstance={editTheInstance}
+              deleteTheInstance={deleteTheInstance}
             />
           </Route>
           <Route path="/" exact>
