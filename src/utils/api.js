@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 // const getWordsFromLocalStorage = (key) => {
 //   const value = localStorage.getItem(key);
 //   let wordList = [];
@@ -88,6 +89,33 @@ const getAllContentTypes = async () => {
   return allContentTypes.data;
 };
 
+const updateField = async (newField, id) => {
+  const body = {
+    newField,
+  };
+  const accessToken = getAuthToken();
+
+  const updatedContentType = await axios.put(`http://localhost:3000/cms/${id}`, body, { headers: { Authorization: accessToken } });
+  console.log(updatedContentType);
+};
+
+// eslint-disable-next-line no-unused-vars
+const createAnInstance = async (newInstances, id, uniqueId) => {
+  const body = {
+    newInstances,
+  };
+  const accessToken = getAuthToken();
+  const updatedContentType = await axios.put(`http://localhost:3000/cms/instance/${id}`, body, { headers: { Authorization: accessToken } });
+  console.log(updatedContentType);
+};
+
+// const getAllCollections = async () => {
+//   const accessToken = getAuthToken();
+//   const allContentTypes = await axios.get('http://localhost:3000/cms/all', { headers: { Authorization: accessToken } });
+//   console.log(allContentTypes.data);
+//   return allContentTypes.data;
+// };
+
 // const getAllDemos = async () => {
 //   const accessToken = getAuthToken();
 //   const successMessage = await axios.get('http://localhost:3000/test', { headers: { Authorization: accessToken } });
@@ -100,5 +128,12 @@ const getAllContentTypes = async () => {
 //   return data.data;
 // };
 export default {
-  getJwtToken, getSuccessMessage, registerAUser, loginAUser, createContentType, getAllContentTypes,
+  getJwtToken,
+  getSuccessMessage,
+  registerAUser,
+  loginAUser,
+  createContentType,
+  getAllContentTypes,
+  updateField,
+  createAnInstance,
 };

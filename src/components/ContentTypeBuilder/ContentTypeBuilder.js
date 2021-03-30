@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import ContentTypeList from '../ContentTypeList/ContentTypeList';
@@ -5,8 +6,9 @@ import ContentTypePage from '../ContentTypePage/ContentTypePage';
 import CreateContentTypeModal from '../CreateContentTypeModal/CreateContentTypeModal';
 
 const ContentTypeBuilder = ({
-  contentTypes, showContentFields, selectedContent, addNewContentType,
+  allContentTypes, showContentFields, selectedContent, addNewContentType, updateFields,
 }) => {
+  // const abc = JSON.stringify(allContentTypes);
   const [showState, setShowState] = useState(false);
 
   const showModal = () => {
@@ -16,8 +18,14 @@ const ContentTypeBuilder = ({
   const hideModal = () => {
     setShowState(false);
   };
+
   return (
     <div>
+      <h1>
+        Content Types
+      </h1>
+      <br />
+      <br />
       <CreateContentTypeModal
         show={showState}
         handleClose={hideModal}
@@ -25,16 +33,16 @@ const ContentTypeBuilder = ({
       >
         <p>Modal</p>
       </CreateContentTypeModal>
-      <button type="button" onClick={showModal}>New Type</button>
-      <h1>
-        Content Types
-        <div>
-          <ContentTypeList contentTypes={contentTypes} showContentFields={showContentFields} />
-        </div>
-        <div>
-          <ContentTypePage selectedContent={selectedContent} />
-        </div>
-      </h1>
+      <button type="button" onClick={showModal}>+ New Type</button>
+      <div>
+        <ContentTypeList
+          allContentTypes={allContentTypes}
+          showContentFields={showContentFields}
+        />
+      </div>
+      <div>
+        <ContentTypePage selectedContent={selectedContent} updateFields={updateFields} />
+      </div>
     </div>
   );
 };

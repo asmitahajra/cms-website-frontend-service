@@ -1,12 +1,14 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import ContentTypeCard from '../ContentTypeCard/ContentTypeCard';
 
-const ContentTypeList = ({ contentTypes, showContentFields }) => (
+const ContentTypeList = ({ allContentTypes, showContentFields }) => (
   <div>
-    {contentTypes.map((contentType) => (
+
+    {allContentTypes.map((contentType) => (
       <ContentTypeCard
-        key={contentType.name}
+        key={contentType.id}
         contentType={contentType}
         showContentFields={showContentFields}
       />

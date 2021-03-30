@@ -4,7 +4,7 @@ import React from 'react';
 
 const ContentTypeCard = ({ contentType, showContentFields }) => (
   <div>
-    <button type="button" onClick={() => showContentFields(contentType.name)}>{contentType.name}</button>
+    <button type="button" onClick={() => showContentFields(contentType.id)}>{contentType.name}</button>
   </div>
 );
 export default ContentTypeCard;

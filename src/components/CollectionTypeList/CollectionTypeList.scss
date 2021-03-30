@@ -1,0 +1,8 @@
+.collection-list {
+    display: flex;
+    flex-direction: column;
+    .list-items {
+        width: 20%;
+        justify-content: center;
+    }
+}
